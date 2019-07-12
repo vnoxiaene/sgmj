@@ -39,7 +39,7 @@ public class CotacaoService {
 		produtoRepository.saveAll(cotacao.getProdutos());
 		veiculoRepository.save(cotacao.getVeiculo());
 		cotacaoRepository.save(cotacao);
-		return cotacaoRepository.save(cotacao);
+		return cotacao;
 	}
 
 	public List<Cotacao> listar() {

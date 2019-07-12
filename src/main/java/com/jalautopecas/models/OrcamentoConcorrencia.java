@@ -23,6 +23,16 @@ public class OrcamentoConcorrencia {
 	private List<Resposta> respostas;
 	@ManyToOne
 	private Veiculo veiculo;
+	private String concorrente;
+	private Vendedor vendedor;
+
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
 
 	public Long getId() {
 		return id;
@@ -62,6 +72,22 @@ public class OrcamentoConcorrencia {
 
 	public void setRespostas(List<Resposta> respostas) {
 		this.respostas = respostas;
+	}
+
+	public String getConcorrente() {
+		return concorrente;
+	}
+
+	public void setConcorrente(String concorrente) {
+		this.concorrente = concorrente;
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
 	}
 
 }
