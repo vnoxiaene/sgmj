@@ -37,4 +37,7 @@ public class OrcamentoConcorrenciaService {
 		return orcamentoConcorrenciaRepository.save(concorrencia);
 	}
 
+	public OrcamentoConcorrencia getOne(Long id) {
+		return orcamentoConcorrenciaRepository.getOne(id);
+	}
 }

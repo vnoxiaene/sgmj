@@ -17,10 +17,18 @@ public class Produto {
 	private String descricao;
 	private String referencia;
 	private String codigojal;
+	private float preco;
 
 	public Produto(String descricao, String referencia) {
 		this.descricao = descricao;
 		this.referencia = referencia;
+	}
+
+	public Produto(String descricao, String referencia, String codigojal, float preco) {
+		this.descricao = descricao;
+		this.referencia = referencia;
+		this.codigojal = codigojal;
+		this.preco = preco;
 	}
 
 }

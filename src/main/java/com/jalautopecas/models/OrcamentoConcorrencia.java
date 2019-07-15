@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 @Entity
 public class OrcamentoConcorrencia {
 	@Id
@@ -25,6 +28,15 @@ public class OrcamentoConcorrencia {
 	private Veiculo veiculo;
 	private String concorrente;
 	private Vendedor vendedor;
+
+	public OrcamentoConcorrencia(List<Produto> produtos, String observacao, Veiculo veiculo, String concorrente,
+			Vendedor vendedor) {
+		this.produtos = produtos;
+		this.observacao = observacao;
+		this.veiculo = veiculo;
+		this.concorrente = concorrente;
+		this.vendedor = vendedor;
+	}
 
 	public Veiculo getVeiculo() {
 		return veiculo;
