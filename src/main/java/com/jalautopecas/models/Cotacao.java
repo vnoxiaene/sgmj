@@ -1,6 +1,7 @@
 package com.jalautopecas.models;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -36,6 +37,12 @@ public class Cotacao {
 		this.observacao = observacao;
 		this.veiculo = veiculo;
 		this.vendedor = vendedor;
+	}
+
+	public void adicionaResposta(Resposta resposta) {
+		if (this.respostas.isEmpty())
+			this.respostas = new ArrayList<>();
+		this.respostas.add(resposta);
 	}
 
 }

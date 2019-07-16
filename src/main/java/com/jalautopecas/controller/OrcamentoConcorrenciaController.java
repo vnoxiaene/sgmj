@@ -16,7 +16,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.jalautopecas.dtos.DetalhesOrcamentoConcorrenciaDto;
 import com.jalautopecas.dtos.OrcamentoConcorrenciaDto;
 import com.jalautopecas.dtos.OrcamentoConcorrenciaForm;
+import com.jalautopecas.dtos.RespostaForm;
 import com.jalautopecas.models.OrcamentoConcorrencia;
+import com.jalautopecas.models.Resposta;
 import com.jalautopecas.services.OrcamentoConcorrenciaService;
 
 @RequestMapping("/concorrentes")
@@ -42,5 +44,14 @@ public class OrcamentoConcorrenciaController {
 	public DetalhesOrcamentoConcorrenciaDto detalhar(@PathVariable Long id) {
 		OrcamentoConcorrencia concorrencia = service.getOne(id);
 		return new DetalhesOrcamentoConcorrenciaDto(concorrencia);
+	}
+
+	@PostMapping("/responder/{id}")
+	public ResponseEntity<DetalhesOrcamentoConcorrenciaDto> responder(@PathVariable Long id,
+			@RequestBody RespostaForm form, UriComponentsBuilder uriComponentsBuilder) {
+		Resposta resposta = form.converter();
+		OrcamentoConcorrencia orcamentoConcorrencia = service.getOne(id);
+		service.adicionaResposta(orcamentoConcorrencia, resposta);
+		return new ResponseEntity<>(new DetalhesOrcamentoConcorrenciaDto(orcamentoConcorrencia), HttpStatus.ACCEPTED);
 	}
 }

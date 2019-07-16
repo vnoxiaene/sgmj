@@ -16,7 +16,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.jalautopecas.dtos.CotacaoDto;
 import com.jalautopecas.dtos.CotacaoForm;
 import com.jalautopecas.dtos.DetalhesCotacaoDto;
+import com.jalautopecas.dtos.RespostaForm;
 import com.jalautopecas.models.Cotacao;
+import com.jalautopecas.models.Resposta;
 import com.jalautopecas.services.CotacaoService;
 
 @RestController
@@ -42,5 +44,14 @@ public class CotacaoController {
 	public DetalhesCotacaoDto detalhar(@PathVariable Long id) {
 		Cotacao cotacao = cotacaoService.getOne(id);
 		return new DetalhesCotacaoDto(cotacao);
+	}
+
+	@PostMapping("/responder/{id}")
+	public ResponseEntity<DetalhesCotacaoDto> responder(@PathVariable Long id, @RequestBody RespostaForm form,
+			UriComponentsBuilder uriComponentsBuilder) {
+		Resposta resposta = form.converter();
+		Cotacao cotacao = cotacaoService.getOne(id);
+		cotacaoService.adicionaResposta(cotacao, resposta);
+		return new ResponseEntity<>(new DetalhesCotacaoDto(cotacao), HttpStatus.ACCEPTED);
 	}
 }

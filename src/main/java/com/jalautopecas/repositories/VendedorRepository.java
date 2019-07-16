@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.jalautopecas.models.Vendedor;
 
 public interface VendedorRepository extends JpaRepository<Vendedor, Long> {
-	Vendedor findByNome(String nome);
+	Vendedor findByNomeContainingIgnoreCase(String nome);
 }

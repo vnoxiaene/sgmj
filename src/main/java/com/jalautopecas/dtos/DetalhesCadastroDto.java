@@ -5,8 +5,12 @@ import java.util.List;
 
 import com.jalautopecas.models.Cadastro;
 import com.jalautopecas.models.Produto;
+import com.jalautopecas.models.Resposta;
 import com.jalautopecas.models.Veiculo;
 
+import lombok.Getter;
+
+@Getter
 public class DetalhesCadastroDto {
 	private Long id;
 	private String vendedor;
@@ -14,6 +18,7 @@ public class DetalhesCadastroDto {
 	private Veiculo veiculo;
 	private List<Produto> produtos;
 	private String observacao;
+	private List<Resposta> respostas;
 
 	public DetalhesCadastroDto(Cadastro cadastro) {
 		this.id = cadastro.getId();
@@ -22,30 +27,7 @@ public class DetalhesCadastroDto {
 		this.observacao = cadastro.getObservacao();
 		this.produtos = cadastro.getProdutos();
 		this.veiculo = cadastro.getVeiculo();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getVendedor() {
-		return vendedor;
-	}
-
-	public LocalDateTime getDataAbertura() {
-		return dataAbertura;
-	}
-
-	public Veiculo getVeiculo() {
-		return veiculo;
-	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public String getObservacao() {
-		return observacao;
+		this.respostas = cadastro.getRespostas();
 	}
 
 }

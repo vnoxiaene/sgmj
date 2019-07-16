@@ -6,6 +6,6 @@ import com.jalautopecas.models.Veiculo;
 
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
 
-	Veiculo findByChassi(String chassi);
+	Veiculo findByChassiContainingIgnoreCase(String chassi);
 
 }

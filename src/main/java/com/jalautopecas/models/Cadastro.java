@@ -11,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @Entity
 public class Cadastro {
@@ -28,65 +30,8 @@ public class Cadastro {
 	private Vendedor vendedor;
 	@ManyToOne
 	private Veiculo veiculo;
-
-	public Vendedor getVendedor() {
-		return vendedor;
-	}
-
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
-	}
-
 	@OneToMany
 	private List<Resposta> respostas;
-
-	public List<Resposta> getRespostas() {
-		return respostas;
-	}
-
-	public void setRespostas(List<Resposta> respostas) {
-		this.respostas = respostas;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public LocalDateTime getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public void setDataCriacao(LocalDateTime dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
-	public Veiculo getVeiculo() {
-		return veiculo;
-	}
-
-	public void setVeiculo(Veiculo veiculo) {
-		this.veiculo = veiculo;
-	}
 
 	public Cadastro(List<Produto> produtos, String observacao, Vendedor vendedor, Veiculo veiculo) {
 		this.produtos = produtos;
@@ -95,10 +40,17 @@ public class Cadastro {
 		this.veiculo = veiculo;
 	}
 
-	public void adicionaProduto(Produto produto) {
+	public Produto adicionaProduto(Produto produto) {
 		if (this.produtos.isEmpty())
 			produtos = new ArrayList<>();
 		produtos.add(produto);
+		return produto;
+	}
+
+	public void adicionaResposta(Resposta resposta) {
+		if (this.respostas.isEmpty())
+			this.respostas = new ArrayList<>();
+		this.respostas.add(resposta);
 	}
 
 }
